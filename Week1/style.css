@@ -43,5 +43,15 @@ select {
 }
 
 .header .spacer {
-    flex: 9999;
+    flex: 10;
+}
+
+.header select {
+    flex: 2;
+}
+
+.header input {
+    flex: 1;
+    width: 0;
+    display: block;
 }
