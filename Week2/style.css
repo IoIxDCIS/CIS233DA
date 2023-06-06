@@ -1,0 +1,67 @@
+:root {
+    --brown: #a15503;
+    --dark-brown: #37170e;
+    --red: #8c202a;
+    --dark-red: #481f26;
+}
+
+body {
+    background-image: url("./images/horse.jpg");
+    background-size:cover;
+    background-position-x: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size:xx-large;
+    color: white;
+    flex-wrap: nowrap;
+    height: 80vh;
+    line-height: 80vh;
+    position: relative;
+}
+    
+footer {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    background-color: var(--dark-brown);
+    min-height: 20vh;
+    position: relative;
+}
+
+footer img {
+    height: 100%;
+}
+    
+.nav_links {
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+    
+.logo_links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 5em;
+}
+    
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+    
+a {
+    text-decoration: none;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
