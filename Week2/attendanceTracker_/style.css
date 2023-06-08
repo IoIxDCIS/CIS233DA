@@ -1,0 +1,180 @@
+* {
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+ }
+
+ nav {
+    text-align: center;
+    border-bottom: 1px solid black;
+    height: 17px;
+}
+
+ nav ul { 
+    list-style-type: none; 
+    padding-left: 1em;
+    border: 14px single black;
+}
+
+nav a { 
+    text-decoration: none; 
+}
+
+nav li {
+    display: inline;
+    padding: 2px 6px;
+    border-radius: 4px 4px 0px 0px;
+}
+
+nav .active {
+    background-color: blue;
+}
+
+nav .inactive {
+    background-color: lightgray;
+}
+
+nav .active a {
+    color: white;
+}
+
+main {
+    padding: 10px;
+}
+
+h1 {
+    font-size: large;
+    margin-top: 0;
+    padding-left: 3px;
+}
+
+table {
+    width: 100%;
+}
+ 
+#itemWrapper {
+    height: 150px;
+ }
+
+#itemList {
+    overflow-y: auto;
+    border: 1px solid gray;
+}
+
+#itemList tr:nth-of-type(even){
+    background-color: lightblue;
+}
+
+#studentList td:nth-child(2) {
+    text-align: center;
+}
+
+select option:nth-of-type(even) {
+    background-color: lightblue;
+}
+
+select option {
+    padding: 3px;
+}
+
+
+@media screen and (max-width: 600px) {
+    body {
+        width: 90vw;
+    }
+    nav {
+        width: 5vh;
+        height: 5vh;
+        top: 1em;
+        right: 1em;
+        border-radius: 15px;
+        overflow: hidden;
+        background: lightgray;
+        position: absolute;
+        transition: all ease 0.5s;
+    }
+
+    nav:before {
+        content:"☰";
+        font-size: 3vh;
+        line-height: 5vh;
+        opacity: 1.0;
+    }
+
+    nav * {
+        display:none;
+    }
+
+    nav:hover, nav:focus {
+        width: 90vw;
+        top: 1em;
+        right: 1em;
+        overflow: visible;
+        height: 25vh;
+    }
+
+    nav:hover:before, nav:focus:before {
+        opacity: 0.0;
+        line-height: 0px;
+    }
+    nav:hover *, nav:focus * {
+        display:block;
+    }
+
+    @keyframes link_toggle {
+        0%, 99% {
+            pointer-events: none;
+        }
+        100% {
+            pointer-events: all;
+        }
+    }
+    nav a {
+        pointer-events: none;
+        animation: link_toggle ease 0.5s;
+    }
+    nav:hover a, nav:focus a {
+        pointer-events: all;
+    }
+
+    nav ul { 
+        padding-left: 1vh;
+    }
+    nav li {
+        display:block;
+        padding: 1em;
+    }
+    nav li a {
+        font-size: 5vw;
+        font-weight: bold;
+    }
+
+    main {
+        display: block;
+    }
+    
+    h1 {
+        font-size: 3vh;
+        padding-left: 3px;
+    }
+
+    input, button, select, select option, table td {
+        font-size: 2vh;
+        padding: 0.5em;
+        font-weight: bold;
+    }
+
+    #itemList {
+        display: block!important;
+    }
+    select {
+        width: 100%!important;
+    }
+
+    input,button {
+        width: 100%!important;
+    }
+    button {
+        display: inline-block;
+    }
+}
