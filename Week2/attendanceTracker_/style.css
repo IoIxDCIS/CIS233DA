@@ -174,4 +174,27 @@ select option {
     button {
         display: inline-block;
     }
+
+    td input[type="checkbox"] {
+        opacity: 0;
+    }
+
+    td:has(input[type="checkbox"]) {
+        width: 3vh;
+        height: 3vh;
+        background: rgb(109, 167, 187);
+        border-radius: 15px;
+    }
+    td:has(input[type="checkbox"]:checked) {
+        background: black;
+    }
+    td:has(input[type="checkbox"]:checked)::before {
+        content: "✓";
+        position: absolute;
+        display:block;
+        width: 3vh;
+        height: 3vh;
+        font-weight: bold;
+        color: rgb(109, 167, 187);
+    }
 }
