@@ -1,0 +1,232 @@
+body {
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+nav {
+    vertical-align: top;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    color: white;
+    text-align: center;
+    background: rgba(0,0,0,0.75);
+    margin: 2em 1em;
+}
+nav li a {
+    color: inherit;
+    text-decoration: none;
+    padding: 0.1em 1em;
+    display: block;
+    background: rbeccapurple;
+}
+
+nav li.selected {
+    background: rgba(0,0,0,0.8);
+    font-weight: bold;
+}
+
+nav li.selected a {
+    pointer-events: none;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 75vw;
+    height: 100%;
+}
+
+.flex .content {
+    flex: 1;
+}
+
+.temperature {
+    position: fixed;
+    color: white;
+    right: 1em;
+    top: 1em;
+    font-size: 200%;
+    text-shadow: 2px 2px 2px black;
+}
+
+.temperature * {
+    font-weight: normal;
+}
+
+.temperature h1, .temperature h2, .temperature h3 {
+    display: inline-block;
+    margin: 0;
+}
+
+
+.background {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+}
+.background img {
+    width: 50vw;
+    height: 50vh;
+    display: block;
+}
+.background video {
+    width: auto;
+    height: 100vh;
+}
+nav, .content {
+    z-index: 1;
+    display: inline-block;
+    padding: 1em;
+}
+
+.content {
+    background: rgba(0,0,0,0.75);
+    color: white;
+
+    font-size: 110%;
+}
+
+.content h1 {
+    font-size: 4em;
+    text-align: center;
+    margin: 0em;
+}
+
+.content p {
+    white-space:pre-wrap;
+    text-indent: 4em;
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .flex {
+        width: 85vw;
+        flex-direction: column;
+        margin: 15vh auto;;
+    }
+    nav {
+        padding: 0;
+    }
+    nav ul {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        padding: 0;
+    }
+    
+    nav ul li {
+        background: rgba(0,0,0,0.6);
+        margin: 0 0.25em;
+        flex: 2;
+        font-size: 2.5vw;
+    }
+    nav ul li a {
+        padding: 0.25em 1em;
+    }
+    nav ul li:nth-of-type(1) {
+        float: left;
+    }
+    .content {
+        background: rgba(0,0,0,0.8);
+        font-size: 2vw;
+    }
+    .temperature {
+        position: absolute;
+    }
+}
+
+@media screen and (max-width: 601px) {
+    * {
+        font-size: 6vw!important;
+    }
+    h1 {
+        font-size: 12vw!important;
+    }
+    h2 {
+        font-size: 9vw!important;
+    }
+    h3 {
+        font-size: 7.02vw!important;
+    }
+    .flex {
+        width: 85vw;
+        flex-direction: column;
+        margin: 15vh auto;
+    }
+
+    nav {
+        width: 3vh;
+        height: 3vh;
+        top: 1em;
+        left: 1em;
+        border-radius: 15px;
+        overflow: hidden;
+        background: rgba(0,0,0,0.75);
+        color: white;
+        position: absolute;
+        transition: all ease 0.5s;
+    }
+
+    nav:before {
+        content:"☰";
+        font-size: 3vh;
+        line-height: 3vh;
+        opacity: 1.0;
+    }
+
+    nav * {
+        display:none;
+    }
+
+    nav:hover, nav:focus {
+        background: black;
+        width: 70vw;
+        top: 1em;
+        left: 1em;
+        overflow: visible;
+        height: fit-content;
+        z-index: 4;
+    }
+
+    nav:hover:before, nav:focus:before {
+        opacity: 0.0;
+        line-height: 0px;
+    }
+    nav:hover *, nav:focus * {
+        display:block;
+    }
+
+
+    .content {
+        background: rgba(0,0,0,0.8);
+        font-size: 2vw;
+    }
+    .temperature {
+        position: absolute;
+    }
+    .background {
+        position: fixed;
+        -webkit-backface-visibility: hidden;
+        top: 0;
+    }
+
+    .background img {
+        display: none;
+    }
+    .background img:first-child {
+        display: block!important;
+        width: auto;
+        height: 100vh;
+        background-size: cover;
+        
+    }
+
+}
