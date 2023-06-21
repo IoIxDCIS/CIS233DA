@@ -15,7 +15,7 @@ function getGas() {
 
 const levels = new Map();
 
-function getCycle(id) {
+function cycleImage(id) {
     if(levels[id] === undefined) {
         levels[id] = 0;
     }
