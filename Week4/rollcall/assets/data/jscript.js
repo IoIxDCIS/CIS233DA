@@ -34,7 +34,7 @@ function getMenu() {
 
 function getSemester() {
     let semesterList = document.getElementById("semesterList");
-    semesterList.innerHTML.length = 0;
+    semesterList.innerHTML = "";
 
     let options = [];
     let option = document.createElement("option");
@@ -147,8 +147,6 @@ function getStudents() {
             studentList.appendChild(option);
         })
     }
-
-
 }
 
 function addStudent() {
@@ -159,8 +157,12 @@ function addStudent() {
     let firstName = document.getElementById("firstName").value;
     let lastName = document.getElementById("lastName").value;
 
-    if(meid == "" || firstName == "" || lastName == "") {
-        alert("Input an MEID, first, and last name");
+    if(meid == "") {
+        alert("Input an MEID");
+    } else if (firstName == "") {
+        alert("Input an first name");
+    } else if (lastName == "") {
+        alert("Input an last name");
     } else {
         let classArray = eval("ary"+value);    
         classArray.push([meid, lastName+", "+firstName]);
