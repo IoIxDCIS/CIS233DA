@@ -1,0 +1,324 @@
+/* 
+    black 1: rgba(0,0,0,1.0),
+    black 2: rgba(0,0,0,0.75),
+    black 3: rgba(0,0,0,0.50),
+    black 4: rgba(0,0,0,0.25),
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: black;
+}
+
+nav {
+    vertical-align: top;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    color: white;
+    text-align: center;
+    background: rgba(0,0,0,0.75);
+    margin: 2em 1em;
+}
+nav li span {
+    color: inherit;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    display: block;
+    user-select: none;
+    cursor: pointer;
+}
+
+
+.flex {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 75vw;
+    height: 100%;
+    position: relative;
+    padding-top: 15%;
+}
+
+.flex .content {
+    flex: 2;
+    background: rgba(0,0,0,0.75);
+    color: white;
+    font-size: 110%;
+    transition: all 0.45s cubic-bezier(0, 0, 0.21, 1);
+}
+
+.content h1 {
+    font-size: 4em;
+    text-align: center;
+    margin: 0em;
+}
+
+.content p {
+    white-space:pre-wrap;
+    text-indent: 4em;
+}
+
+.temperature {
+    position: fixed;
+    color: white;
+    right: 1em;
+    top: 1em;
+    font-size: 200%;
+    text-shadow: 2px 2px 2px black;
+}
+
+.temperature * {
+    font-weight: normal;
+}
+
+.temperature h1, .temperature h2, .temperature h3 {
+    display: inline-block;
+    margin: 0;
+}
+
+
+.background {
+    position: fixed;
+    z-index: -1;
+    
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    background: black;
+
+    left: 0;
+    top: 0;
+    transition: all 0.45s cubic-bezier(0, 0, 0.21, 1);
+}
+
+.background img {
+    width: 50vw;
+    height: 50vh;
+    display: block;
+}
+.background video {
+    width: auto;
+    height: 100vh;
+}
+
+.background audio {
+    z-index: 10;
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+}
+
+nav, .content {
+    z-index: 1;
+    display: inline-block;
+    padding: 1em;
+}
+
+
+body#arizona, body#phoenix, body#mesa, body#yuma, body#bisbee, body#tuscon {
+    position: absolute;
+    top: 0;
+}
+
+/* PAGE SELECTIONS/TRANSITIONS */
+/* HORRORS BE AHEAD */
+
+.flex .content {
+    display: none;
+}
+
+.flex #arizona, /* we want to show the arizona page by default*/
+body#phoenix .flex #phoenix,
+body#mesa .flex #mesa,
+body#yuma .flex #yuma,
+body#bisbee .flex #bisbee,
+body#tuscon .flex #tuscon {
+    display: block;
+}
+
+/* we want to hide the arizona page when any other thing is selected */
+body:not([id="arizona"]) .flex #arizona {
+    display: none;
+}
+
+/* all backgrounds that aren't from arizona should be hidden by default */
+.background:not(.arizona) {
+    left: 100vw;
+}
+
+/* when each tabs is selected show the respective backgrounds. */
+/* but in order for the effect to look good, we have to use this spaghetti piece of code that also shows the background for every page to the left, so that it appears when the background slides out.
+
+i so badly wish i could use :not() but the css rule right above this one takes precedence so i have to do this instead.
+
+the intentation is weird but i ironicalyl feel that this is nicer on the eyes.
+*/
+body#phoenix .background.phoenix,
+    body#mesa .background.mesa, 
+    body#mesa .background.phoenix,
+        body#yuma .background.yuma, 
+        body#yuma .background.mesa, 
+        body#yuma .background.phoenix,
+            body#bisbee .background.bisbee, 
+            body#bisbee .background.yuma, 
+            body#bisbee .background.mesa, 
+            body#bisbee .background.phoenix,
+                body#tuscon .background.tuscon, 
+                body#tuscon .background.bisbee, 
+                body#tuscon .background.yuma, 
+                body#tuscon .background.mesa, 
+                body#tuscon .background.phoenix {
+    
+                    left: 0vw!important;
+}
+
+/* highlight any tabs that are selected */
+.flex span.arizona,
+body#phoenix .flex span.phoenix,
+body#mesa .flex span.mesa,
+body#yuma .flex span.yuma,
+body#bisbee .flex span.bisbee,
+body#tuscon .flex span.tuscon {
+    background: rgba(0,0,0,0.8);
+    font-weight: bold;
+}
+
+/* unlight the arizona tab when anything else is selected */
+body:not([id="arizona"]) .flex span.arizona {
+    background: initial;
+    font-weight: normal;
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .flex {
+        width: 85vw;
+        flex-direction: column;
+        margin: 15vh auto;;
+    }
+    nav {
+        padding: 0;
+    }
+    nav ul {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        padding: 0;
+    }
+    
+    nav ul li {
+        background: rgba(0,0,0,0.6);
+        margin: 0 0.25em;
+        flex: 2;
+        font-size: 2.5vw;
+    }
+    nav ul span {
+        padding: 0.25em 1em;
+    }
+    nav ul li:nth-of-type(1) {
+        float: left;
+    }
+    .content {
+        background: rgba(0,0,0,0.8);
+        font-size: 2vw;
+    }
+    .temperature {
+        position: absolute;
+    }
+}
+
+@media screen and (max-width: 601px) {
+    * {
+        font-size: 6vw!important;
+    }
+    h1 {
+        font-size: 12vw!important;
+    }
+    h2 {
+        font-size: 9vw!important;
+    }
+    h3 {
+        font-size: 7.02vw!important;
+    }
+    .flex {
+        width: 85vw;
+        flex-direction: column;
+        margin: 15vh auto;
+    }
+
+    nav {
+        width: 3vh;
+        height: 3vh;
+        top: 1em;
+        left: 1em;
+        border-radius: 15px;
+        overflow: hidden;
+        background: rgba(0,0,0,0.75);
+        color: white;
+        position: absolute;
+        transition: all ease 0.5s;
+    }
+
+    nav:before {
+        content:"☰";
+        font-size: 3vh;
+        line-height: 3vh;
+        opacity: 1.0;
+    }
+
+    nav * {
+        display:none;
+    }
+
+    nav:hover, nav:focus {
+        background: black;
+        width: 70vw;
+        top: 1em;
+        left: 1em;
+        overflow: visible;
+        height: fit-content;
+        z-index: 4;
+    }
+
+    nav:hover:before, nav:focus:before {
+        opacity: 0.0;
+        line-height: 0px;
+    }
+    nav:hover *, nav:focus * {
+        display:block;
+    }
+
+
+    .content {
+        background: rgba(0,0,0,0.8);
+        font-size: 2vw;
+    }
+    .temperature {
+        position: absolute;
+    }
+    .background {
+        position: fixed;
+        -webkit-backface-visibility: hidden;
+        top: 0;
+    }
+
+    .background img {
+        display: none;
+    }
+    .background img:first-child {
+        display: block!important;
+        width: auto;
+        height: 100vh;
+        background-size: cover;   
+    }
+    .background audio {
+        display: none;
+    }
+
+}
