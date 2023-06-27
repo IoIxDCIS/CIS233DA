@@ -253,8 +253,8 @@ body:not([id="arizona"]) .flex span.arizona {
     }
 
     nav {
-        width: 3vh;
-        height: 3vh;
+        width: 5vh;
+        height: 5vh;
         top: 1em;
         left: 1em;
         border-radius: 15px;
@@ -267,14 +267,15 @@ body:not([id="arizona"]) .flex span.arizona {
 
     nav:before {
         content:"☰";
-        font-size: 3vh;
-        line-height: 3vh;
+        font-size: 6vh;
+        line-height: 6vh;
         opacity: 1.0;
     }
 
     nav * {
         display:none;
     }
+
 
     nav:hover, nav:focus {
         background: black;
