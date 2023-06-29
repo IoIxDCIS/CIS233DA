@@ -10,6 +10,20 @@
             text-align: center;
             min-width: 50vw;
         }
+        .prev_guesses {
+            position: absolute;
+            top: 1em;
+            left: 1em;
+            text-align: left;
+            color: black;
+            background: rgba(0,0,0,0.1);
+            padding: 1em;
+            width: fit-content;
+        }
+        .prev_guesses ul {
+            list-style-type:none;
+            padding: 0;
+        }
         #background {
             z-index: -1;
             position: absolute;
@@ -39,12 +53,14 @@
     <div class="loading">
         Loading...
     </div>
+    <div class="prev_guesses">
+        <ul></ul>
+    </div>
     <form action="#" id="guessForm" style="display: none;">
         <center>
             <input id="guess" type="text">
             <input type="submit">
         </center>
-
     </form>
     <h1 id="correct"></h1>
     <h1 id="incorrect"></h1>
@@ -55,6 +71,7 @@
         let id = Math.ceil(Math.random() * 493);
         let properName;
         let flavorText;
+        const d = new Date();
         fetch("https://pokeapi.co/api/v2/pokemon/"+id).then(f => f.json()).then(name => {
             fetch("https://pokeapi.co/api/v2/pokemon-species/"+id).then(desc => desc.json()).then(desc => {
                 let eng = desc.flavor_text_entries.filter(f => f["language"]["name"] == "en")
@@ -67,15 +84,25 @@
                 document.querySelector("#guessForm").style.display = "block";
             })
         })
+        let cookies = document.cookie.split("\"");
+        cookies.forEach(cookie => {
+            if(cookie != "") {
+                document.querySelector(".prev_guesses ul").innerHTML += `<li>${cookie}</li>`;
+            }
+        })
         document.querySelector("#guessForm").addEventListener("submit", f => {
-            if(document.querySelector("#guess").value.toLowerCase() == properName.toLowerCase()) {
+            let guess = document.querySelector("#guess").value.toLowerCase();
+            if(guess == properName.toLowerCase()) {
                 document.querySelector("#correct").innerHTML = "Correct";
             } else {
                 document.querySelector("#incorrect").innerHTML = "Incorrect";
             }
             document.querySelector("#pokename").innerHTML = properName;
             document.querySelector("#pokedesc").innerHTML = flavorText;
+            document.querySelector("#guessForm").style = "pointer-events: none;"
+            document.activeElement.blur();
             document.querySelector("#background").style = "filter: brightness(100%); opacity: 0.5;"
+            document.cookie += `"${guess}, ${properName}";`
         })
     </script>
 </body>
