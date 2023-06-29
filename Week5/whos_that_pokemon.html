@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            text-align: center;
+            min-width: 50vw;
+        }
+        #background {
+            z-index: -1;
+            position: absolute;
+            width: 75%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #guessForm {
+            display: block;
+            width: 50vw;
+            margin: 0 auto;
+        }
+        #guess {
+            display: block;
+        }
+        #correct {
+            color: green;
+        }
+        #incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <img id="background" style="filter: brightness(-5000%);">
+    <div class="loading">
+        Loading...
+    </div>
+    <form action="#" id="guessForm" style="display: none;">
+        <center>
+            <input id="guess" type="text">
+            <input type="submit">
+        </center>
+
+    </form>
+    <h1 id="correct"></h1>
+    <h1 id="incorrect"></h1>
+    <h1 id="pokename"></h1>
+    <p id="pokedesc"></p>
+
+    <script>
+        let id = Math.ceil(Math.random() * 493);
+        let properName;
+        let flavorText;
+        fetch("https://pokeapi.co/api/v2/pokemon/"+id).then(f => f.json()).then(name => {
+            fetch("https://pokeapi.co/api/v2/pokemon-species/"+id).then(desc => desc.json()).then(desc => {
+                let eng = desc.flavor_text_entries.filter(f => f["language"]["name"] == "en")
+                let ftid = Math.ceil(Math.random() * eng.length);
+                properName = name.name[0].toUpperCase() + name.name.slice(1);
+                flavorText = eng[ftid-1].flavor_text.replace(name.name.toUpperCase(), properName);
+                let recentSprite = name.sprites.front_default;
+                document.querySelector("#background").src = recentSprite;
+                document.querySelector(".loading").remove();
+                document.querySelector("#guessForm").style.display = "block";
+            })
+        })
+        document.querySelector("#guessForm").addEventListener("submit", f => {
+            if(document.querySelector("#guess").value.toLowerCase() == properName.toLowerCase()) {
+                document.querySelector("#correct").innerHTML = "Correct";
+            } else {
+                document.querySelector("#incorrect").innerHTML = "Incorrect";
+            }
+            document.querySelector("#pokename").innerHTML = properName;
+            document.querySelector("#pokedesc").innerHTML = flavorText;
+            document.querySelector("#background").style = "filter: brightness(100%); opacity: 0.5;"
+        })
+    </script>
+</body>
+</html>
