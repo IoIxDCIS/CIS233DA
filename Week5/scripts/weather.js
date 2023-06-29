@@ -2,10 +2,8 @@ const apiKey = "898636a34e1e8a683a15b0fdb45b2672"
 
 function getWeather(cityName) {
     fetch("https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid="+apiKey+"&units=imperial").then(response => response.json()).then(json => {
-        document.querySelector("#weather_num_f").innerHTML = json.main.temp;
-    })
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`).then(f => f.json()).then(response => response.json()).then(json => {
-        document.querySelector("#weather_num_c").innerHTML = json.main.temp;
+        document.querySelector("#weather_num_f").innerHTML = parseInt(json.main.temp);
+        document.querySelector("#weather_num_c").innerHTML = parseInt((+(json.main.temp) - 32) / 1.8);
     })
 }
 
