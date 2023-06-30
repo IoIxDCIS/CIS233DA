@@ -83,7 +83,10 @@ nav li span {
     margin: 0;
 }
 
-
+.temperature ul {
+    font-size: 60%;
+    list-style-type: none;
+}
 .background {
     position: fixed;
     z-index: -1;
