@@ -200,7 +200,7 @@ body:not([id="arizona"]) .flex span.arizona {
 
 @media screen and (min-width: 601px) and (max-width: 1024px) {
     .flex {
-        width: 85vw;
+        width: 95vw;
         flex-direction: column;
         margin: 15vh auto;;
     }
@@ -233,6 +233,7 @@ body:not([id="arizona"]) .flex span.arizona {
     }
     .temperature {
         position: absolute;
+        font-size: 2vw
     }
 }
 
@@ -250,16 +251,16 @@ body:not([id="arizona"]) .flex span.arizona {
         font-size: 7.02vw!important;
     }
     .flex {
-        width: 85vw;
+        width: 85%;
         flex-direction: column;
-        margin: 15vh auto;
+        margin: 15vh 0;
     }
 
     nav {
         width: 5vh;
         height: 5vh;
-        top: 1em;
-        left: 1em;
+        top: -4em;
+        left: 0px;
         border-radius: 15px;
         overflow: hidden;
         background: rgba(0,0,0,0.75);
@@ -283,7 +284,7 @@ body:not([id="arizona"]) .flex span.arizona {
     nav:hover, nav:focus {
         background: black;
         width: 70vw;
-        top: 1em;
+        top: -2em;
         left: 1em;
         overflow: visible;
         height: fit-content;
@@ -293,6 +294,7 @@ body:not([id="arizona"]) .flex span.arizona {
     nav:hover:before, nav:focus:before {
         opacity: 0.0;
         line-height: 0px;
+        content: "";
     }
     nav:hover *, nav:focus * {
         display:block;
@@ -302,9 +304,15 @@ body:not([id="arizona"]) .flex span.arizona {
     .content {
         background: rgba(0,0,0,0.8);
         font-size: 2vw;
+        width: 100%;
     }
     .temperature {
         position: absolute;
+        top: auto;
+        right: 0;
+    }
+    .temperature ul {
+        display: none;
     }
     .background {
         position: fixed;
